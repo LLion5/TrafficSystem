@@ -1,0 +1,27 @@
+
+数据库名称：lightdata
+
+
+表的创建,car:id,date,car_id,station_id
+
+CREATE TABLE `car` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `date` char(30) NOT NULL ,
+  `car_id` int(11) NOT NULL ,
+  `station_id` int(11) NOT NULL ,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+
+
+插入如数据：
+INSERT INTO car
+     (date, car_id, station_id)
+     VALUES
+     ('2018.07.08 公元 at 15:02:05 CST',89,56);
+
+     
+查询数据：select * from car;
+
+查询车辆路径：select date,station_id from car where car_id=21;
+
+删除数据：delete from car where id > 447;

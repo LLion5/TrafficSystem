@@ -1,0 +1,24 @@
+int number = 3;
+void setup()
+{
+  Serial.begin(9600); 
+  pinMode(13, OUTPUT);
+  pinMode(12, OUTPUT);
+}
+void loop()
+{
+    if(Serial.available() >=2) {  
+      number = Serial.parseInt();    
+     }
+     light(number);  
+     Serial.println(number);
+}
+
+void light(int millisecond){
+    digitalWrite(13, HIGH);   
+    digitalWrite(12, LOW);
+    delay(1000*millisecond);              
+    digitalWrite(13, LOW);    
+    digitalWrite(12, HIGH);   
+    delay(1000);  
+}

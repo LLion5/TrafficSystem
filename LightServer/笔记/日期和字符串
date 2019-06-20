@@ -1,0 +1,16 @@
+SimpleDateFormat sdf=new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z");//小写的mm表示的是分钟
+		Date temp = new Date();
+		String str = sdf.format(temp);
+		System.out.println(str);
+		
+		try {
+			temp = sdf.parse(str);
+			System.out.println(temp.toString());
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		结果：2018.07.06 公元 at 10:34:04 CST
+			  Fri Jul 06 10:34:04 CST 2018

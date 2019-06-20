@@ -1,0 +1,86 @@
+#include<reg52.h>
+#define uchar unsigned char
+#define uint unsigned int
+
+//按键设置
+sbit key_s2 = P3^0;//S2按键位定义，绿灯4红灯1
+sbit key_s3 = P3^1;	//S3按键位定义，绿灯3红灯2
+sbit key_s4 = P3^2;	//S4按键位定义，绿灯2红灯3
+sbit key_s5 = P3^3;	//S5按键位定义，绿灯1红灯4
+//红绿灯
+sbit led_red = P1^0;
+sbit led_gre = P1^1;
+
+uint mode = 0;
+
+void delay(uint z)
+{
+	uint x,y;
+	for(x = z; x > 0; x--)
+		for(y = 114; y > 0 ; y--);
+}
+
+void Mode(uint mode)
+{
+	switch(mode){
+		case 1: led_red=1;led_gre=0; delay(4000); led_gre=1;led_red=0;delay(1000);break;
+		case 2: led_red=1;led_gre=0; delay(3000); led_gre=1;led_red=0;delay(2000);break;
+		case 3: led_red=1;led_gre=0; delay(2000); led_gre=1;led_red=0;delay(3000);break;
+		case 4: led_red=1;led_gre=0; delay(1000); led_gre=1;led_red=0;delay(4000);break;
+		default	: led_red=1;led_gre=0; delay(1000); led_gre=1;led_red=0;delay(1000);
+	}
+}
+
+
+void Key()
+{
+	if(key_s2 == 0)//判断S2是否按键
+		{
+			delay(5);//软件延时
+			while(!key_s2);	//松手检测
+			while(1)
+				{
+					 //中断函数实现
+					 Mode(1);
+				}
+		}
+	else if(key_s3 == 0)//判断S2是否按键
+		{
+			delay(5);//软件延时
+			while(!key_s3);	//松手检测
+			while(1)
+				{
+					 //中断函数实现
+					 Mode(2);
+				}
+		}
+	else if(key_s4 == 0)//判断S2是否按键
+		{
+			delay(5);//软件延时
+			while(!key_s4);	//松手检测
+			while(1)
+				{
+					 //中断函数实现
+					 Mode(3);
+				}
+		}
+	else if(key_s5 == 0)//判断S2是否按键
+		{
+			delay(5);//软件延时
+			while(!key_s5);	//松手检测
+			while(1)
+				{
+					 //中断函数实现
+					 Mode(4);
+				}
+		}					
+}
+
+void main()
+{
+	 while(1){
+	 	  Key();
+	 }
+}
+
+
